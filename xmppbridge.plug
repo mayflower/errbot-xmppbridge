@@ -1,0 +1,12 @@
+[Core]
+module = xmppbridge
+name = xmppbridge
+
+[Documentation]
+description = Bridge channels to XMPP MUCs
+
+[Python]
+version = 3
+
+[Errbot]
+
