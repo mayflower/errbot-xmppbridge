@@ -27,8 +27,8 @@ class BridgeBot(sleekxmpp.ClientXMPP):
 
     def muc_message(self, msg):
         self.log.info(msg)
-        if msg['mucnick'] != self.nick and self.nick in msg['body']:
-            slack_body = re.sub('{}[,:]\s+'.format(self.nick), '', msg['body'])
+        if msg['mucnick'] != self.nick and msg['body'].startswith(self.nick):
+            slack_body = re.sub('^{}[,:]?\s+'.format(self.nick), '', msg['body'])
             self.slack.send(
                 self.slack.build_identifier(self.slackchannel(msg['from'].user)),
                 '{}: {}'.format(msg['mucnick'], slack_body)
